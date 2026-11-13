@@ -1,0 +1,19 @@
+{
+  "name": "kafene",
+  "productName": "Kafene",
+  "version": "0.27.8",
+  "description": "Kafene productivity workspace",
+  "private": true,
+  "author": "Kafene",
+  "main": "main.cjs",
+  "license": "MIT",
+  "scripts": {
+    "make:win": "electron-forge make --platform=win32 --arch=x64"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "7.11.1",
+    "@electron-forge/maker-squirrel": "7.11.1",
+    "electron": "41.10.7"
+  },
+  "config": { "forge": "./forge.config.cjs" }
+}

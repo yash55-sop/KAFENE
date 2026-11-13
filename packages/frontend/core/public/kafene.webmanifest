@@ -1,0 +1,10 @@
+{
+  "name": "Kafene",
+  "short_name": "Kafene",
+  "description": "A workspace for docs, whiteboards, and databases.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "icons": [{ "src": "/imgs/kafene.svg", "sizes": "any", "type": "image/svg+xml" }]
+}

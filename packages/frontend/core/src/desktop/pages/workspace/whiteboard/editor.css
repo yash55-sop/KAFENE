@@ -1,0 +1,18 @@
+.affine-whiteboard .excalidraw {
+  --ui-font: var(--affine-font-family);
+  --border-radius-lg: 8px;
+}
+.affine-whiteboard {
+  isolation: isolate;
+}
+.affine-whiteboard .whiteboard-error {
+  position: absolute;
+  z-index: 10;
+  bottom: 56px;
+  left: 16px;
+  right: 16px;
+  padding: 12px;
+  border-radius: 8px;
+  background: var(--affine-background-error-color, #fce4e4);
+  color: #7b2020;
+}

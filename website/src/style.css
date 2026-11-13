@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+:root { font-family: "Inter", system-ui, sans-serif; color: #38271f; background: #fbf6ed; }
+body { min-width: 320px; margin: 0; }
+a { text-underline-offset: 4px; }
+.wrap { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
+.site-header { border-bottom: 1px solid #e8ddd0; }
+.nav, .nav nav, .brand, .actions, .footer { display: flex; align-items: center; }
+.nav { justify-content: space-between; min-height: 72px; }
+.nav nav, .actions { gap: 14px; }
+.nav nav > a:first-child { font-size: .9rem; font-weight: 600; padding: 8px; }
+.brand { gap: 10px; font-weight: 750; letter-spacing: -.02em; font-size: 1.2rem; }
+.hero { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(24px, 6vw, 90px); align-items: center; padding-block: clamp(56px, 10vw, 132px) 80px; }
+.eyebrow { color: #805843; font-size: .75rem; font-weight: 750; letter-spacing: .14em; text-transform: uppercase; }
+.hero h1, .docs h1 { font-family: Georgia, serif; font-size: clamp(3.4rem, 7vw, 6.7rem); line-height: .98; letter-spacing: -.065em; margin: 18px 0 24px; }
+.intro { font-size: 1.075rem; color: #705a4d; line-height: 1.65; max-width: 42ch; }
+.actions { flex-wrap: wrap; margin-top: 28px; }
+.platform { color: #755d50; font-size: .8rem; margin-top: 13px; }
+.preview { border: 1px solid #ddccba; border-radius: 20px; background: #fffaf4; box-shadow: 0 26px 50px #51312415; overflow: hidden; margin: 0; }
+.preview-top { display: flex; align-items: center; gap: 9px; font-size: .85rem; font-weight: 700; padding: 12px 16px; background: #efe1d1; }
+.preview-top span { margin-left: auto; color: #755d50; font-weight: 500; }
+.preview-body { padding: clamp(18px, 4vw, 32px); }
+.preview-path { font-size: .75rem; color: #755d50; }
+.preview-body h2 { font: 2.5rem Georgia, serif; letter-spacing: -.04em; margin: 8px 0; }
+.preview-tabs { display: flex; gap: 18px; border-bottom: 1px solid #e8ddd0; font-size: .77rem; }
+.preview-tabs span { padding: 7px 0; }
+.preview-tabs span:last-child { border-bottom: 2px solid #9c644a; font-weight: 700; }
+.preview-chart { height: 118px; display: flex; align-items: end; gap: 10px; padding: 12px 8px 0; background: repeating-linear-gradient(0deg,#e8ddd0 0 1px,transparent 1px 29px); }
+.preview-chart i { flex: 1; background: #ae795a; border-radius: 4px 4px 0 0; height: 42%; }
+.preview-chart i:nth-child(2) { height: 62%; }.preview-chart i:nth-child(3) { height: 47%; }.preview-chart i:nth-child(4) { height: 78%; }.preview-chart i:nth-child(5) { height: 65%; }.preview-chart i:nth-child(6) { height: 94%; background: #68422f; }
+.preview-row { display: flex; align-items: center; gap: 9px; padding-block: 9px; border-bottom: 1px solid #e8ddd0; font-size: .8rem; }
+.preview-row small { margin-left: auto; color: #755d50; }
+.features { display: grid; grid-template-columns: repeat(3,1fr); border-block: 1px solid #e8ddd0; }
+.features article { padding: 30px 24px; }
+.features article + article { border-left: 1px solid #e8ddd0; }
+.features svg { color: #805843; }
+.features h2 { margin: 14px 0 7px; font-weight: 750; }
+.features p, .docs p, .docs li { line-height: 1.65; color: #705a4d; }
+.features a, .footer > a:last-child { display: inline-flex; align-items: center; gap: 5px; margin-top: 12px; font-size: .85rem; font-weight: 650; }
+.footer { padding-block: 28px; justify-content: space-between; }
+.footer > a:last-child { margin-top: 0; }
+.docs { max-width: 850px; width: calc(100% - 48px); margin: 0 auto; padding-block: 60px 45px; }
+.docs h1 { font-size: clamp(2.75rem, 6vw, 5rem); }
+.docs-section, .docs section { border-top: 1px solid #e8ddd0; margin-top: 30px; padding-top: 24px; }
+.docs h2 { font: 2rem Georgia,serif; margin: 0 0 12px; letter-spacing: -.03em; }
+.docs h3 { font-weight: 700; margin-top: 16px; }
+.docs p { margin: 10px 0; }
+.docs ol, .docs ul { padding-left: 1.3rem; list-style: revert; }
+.docs a { text-decoration: underline; }
+.docs pre { overflow-x: auto; background: #32251f; color: #fff5e4; border-radius: 10px; padding: 16px; font-size: .85rem; }
+.docs :not(pre) > code { background: #efe1d1; padding: .12em .3em; border-radius: 4px; overflow-wrap: anywhere; }
+.docs button { border: 1px solid #cfc0ae; border-radius: 6px; padding: 3px 9px; font-size: .8rem; margin-block: 6px; }
+@media (max-width: 760px) {
+  .hero { grid-template-columns: 1fr; padding-bottom: 42px; }
+  .wide-break { display: none; }
+  .features { grid-template-columns: 1fr; }
+  .features article + article { border-left: 0; border-top: 1px solid #e8ddd0; }
+}
