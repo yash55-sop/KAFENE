@@ -1,0 +1,76 @@
+name: Kafene Windows release
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency: kafene-windows-release
+
+jobs:
+  build:
+    runs-on: windows-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: toeverything/AFFiNE
+          ref: 0b69a6da21e8fd35beb85667bb8496d9b3852238
+          path: desktop-source
+          persist-credentials: false
+      - name: Apply Kafene desktop source
+        working-directory: desktop-source
+        run: git apply --binary ../kafene-desktop-source.patch
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build desktop web bundle
+        working-directory: desktop-source
+        env:
+          PUBLIC_PATH: /
+          NODE_OPTIONS: --max-old-space-size=8192
+          HUSKY: '0'
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+          ELECTRON_SKIP_BINARY_DOWNLOAD: '1'
+        run: |
+          corepack yarn install --immutable
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          corepack yarn affine bundle -p '@affine/web'
+      - name: Build Windows x64 installer
+        working-directory: desktop-source/kafene-desktop
+        env:
+          ELECTRON_SKIP_BINARY_DOWNLOAD: '1'
+        run: |
+          $env:KAFENE_WEB_DIR = (Resolve-Path ../packages/frontend/apps/web/dist).Path
+          npm.cmd ci
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          npm.cmd run make:win
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kafene-windows-x64
+          path: desktop-source/kafene-desktop/out/make/squirrel.windows/x64/Kafene-Setup.exe
+          if-no-files-found: error
+          compression-level: 0
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: kafene-windows-x64
+      - name: Upload installer and publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          sha256sum Kafene-Setup.exe > Kafene-Setup.exe.sha256
+          gh release upload v0.27.8 Kafene-Setup.exe Kafene-Setup.exe.sha256 --clobber
+          gh release edit v0.27.8 --draft=false --latest
