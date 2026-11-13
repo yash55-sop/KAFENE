@@ -6,4 +6,4 @@ Kafene is an offline-first workspace for Windows. It brings notes, databases, ch
 - [Connect Codex or Claude](https://kafene-desktop.yashwork0055.chatgpt.site/docs/)
 - [Build the Windows installer](kafene-desktop/README.md)
 
-Kafene is independently distributed. It incorporates open-source code from AFFiNE and Excalidraw. See [LICENSE](LICENSE), [LICENSE-MIT](LICENSE-MIT), and the [Excalidraw notice](packages/frontend/core/public/LICENSE-Excalidraw.txt) for the original terms and attribution.
+Kafene is independently distributed. See [LICENSE](LICENSE), [LICENSE-MIT](LICENSE-MIT)
